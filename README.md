@@ -2,9 +2,9 @@
 
 ## Description
 
-AgileTrack is a full-stack application built to mimic functionalities of Jira, an issue tracking and project management software. It provides an organized interface for project management, task tracking, and team collaboration.
+AgileTrack is a full-stack application built to mimic the functionalities of Jira, an issue-tracking and project-management software. It provides an organized interface for project management, task tracking, and team collaboration.
 
-With AgileTrack, you can manage multiple projects, create and assign tasks, and track the progress of your projects all from one place. It's perfect for teams that want to stay organized and keep their workflow smooth.
+With AgileTrack, you can manage multiple projects, create and assign tasks, and track the progress of your projects all from one place. It's perfect for teams wanting to stay organized and smoothen their workflow.
 
 ## Features
 
@@ -35,7 +35,7 @@ With AgileTrack, you can manage multiple projects, create and assign tasks, and 
 2. Install dependencies
 
    ```
-   cd AgileTrack
+   cd agile-track
    npm install
    ```
 
