@@ -4,11 +4,12 @@ import { BiLoaderAlt } from "react-icons/bi";
 import { ButtonHTMLAttributes, forwardRef } from "react";
 
 const buttonVariants = cva(
-  "inline-flex duration-300 items-center font-medium",
+  "inline-flex duration-300 items-center font-medium justify-center",
   {
     variants: {
       variant: {
-        default: "bg-sky-400 text-white hover:bg-sky-500 rounded-md",
+        default:
+          "bg-sky-500 focus:ring-2 text-white shadow-sm hover:bg-sky-400 rounded-md font-semibold",
         destructive: "text-white bg-red-600 hover:bg-red-500 rounded-md",
         outline:
           "bg-sky-200 text-white hover:bg-sky-300 border border-sky-400 rounded-md",
@@ -18,7 +19,7 @@ const buttonVariants = cva(
           "bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 dark:text-slate-400 data-[state=open]:bg-transparent dark:data-[state=open]:bg-transparent",
       },
       size: {
-        default: "py-2 px-5 font-sm",
+        default: "py-2 px-4 font-sm",
         sm: "h-9 px-2 rounded-md font-sm",
         lg: "h-11 px-8 rounded-md",
         full: "w-full h-10 rounded-md",

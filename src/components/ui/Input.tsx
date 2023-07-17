@@ -3,12 +3,12 @@ import { VariantProps, cva } from "class-variance-authority";
 import { InputHTMLAttributes, forwardRef } from "react";
 
 const inputVariants = cva(
-  "rounded-md block px-3 py-2 text-slate-900  placeholder-slate-400 invalid:border-pink-500 invalid:text-pink-600 focus:outline-none duration-300 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:bg-slate-50 disabled:border-slate-200 disabled:text-slate-500 disabled:shadow-none sm:leading-6",
+  "rounded-md block px-3 py-2 text-sm text-slate-900 placeholder-slate-400 invalid:border-pink-500 invalid:text-pink-600 focus:outline-none duration-300 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:bg-slate-50 disabled:border-slate-200 disabled:text-slate-500 disabled:shadow-none sm:leading-6",
   {
     variants: {
       variant: {
         default:
-          "border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm outline-none ring-1 ring-inset ring-gray-300 focus:border-sky-500 focus:ring-inset focus:ring-sky-500",
+          "border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm outline-none focus:ring-1 ring-inset ring-slate-300 focus:border-sky-500 focus:ring-sky-500",
         ghost: "border-none",
       },
       // size: {
