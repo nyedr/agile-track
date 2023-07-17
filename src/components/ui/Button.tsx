@@ -9,20 +9,22 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-sky-500 focus:ring-2 text-white shadow-sm hover:bg-sky-400 rounded-md font-semibold",
+          "border-blue-600 bg-blue-600 focus:ring-2 text-white shadow-sm hover:bg-blue-500 rounded-md",
         destructive: "text-white bg-red-600 hover:bg-red-500 rounded-md",
         outline:
-          "bg-sky-200 text-white hover:bg-sky-300 border border-sky-400 rounded-md",
+          "bg-blue-200 text-white hover:bg-blue-300 border border-sky-400 rounded-md",
         subtle:
-          "bg-sky-200 text-slate-900 hover:bg-sky-300 dark:text-white rounded-md",
+          "bg-blue-200 text-slate-900 hover:bg-blue-300 dark:text-white rounded-md",
         ghost:
           "bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 dark:text-slate-400 data-[state=open]:bg-transparent dark:data-[state=open]:bg-transparent",
+        provider:
+          "flex items-center justify-center rounded-lg border py-2.5 duration-150 hover:bg-gray-50 active:bg-gray-100 dark:bg-gray-800",
       },
       size: {
         default: "py-2 px-4 font-sm",
-        sm: "h-9 px-2 rounded-md font-sm",
-        lg: "h-11 px-8 rounded-md",
-        full: "w-full h-10 rounded-md",
+        sm: "h-9 px-2 font-sm",
+        lg: "py-3 px-12",
+        full: "w-full h-10",
       },
     },
     defaultVariants: {

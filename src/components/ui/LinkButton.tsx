@@ -7,14 +7,14 @@ const linkVariants = cva("text-slate-900 dark:text-slate-200 bg-transparent", {
   variants: {
     variant: {
       default:
-        "hover:bg-slate-200 duration-300 dark:hover:bg-slate-600 no-underline",
+        "hover:bg-slate-200 duration-300 dark:hover:bg-slate-600 no-underline rounded-md",
       underline:
-        "underline underline-offset-2 decoration-slate-900 dark:decoration-slate-200",
+        "font-semibold hover:underline underline-offset-2 decoration-slate-900 dark:decoration-slate-200",
       color: "text-sky-300 hover:text-sky-400 duration-300 font-medium",
     },
     size: {
       sm: "text-sm",
-      default: "text-base",
+      default: "text-base py-2 px-4",
     },
   },
   defaultVariants: {

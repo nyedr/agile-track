@@ -1,6 +1,9 @@
-import Input from "@/ui/Input";
-import Button from "@/ui/Button";
+import Header from "@/components/Header";
 
 export default function Home() {
-  return <main className="container h-full">App</main>;
+  return (
+    <main className="container h-full">
+      <Header />
+    </main>
+  );
 }
