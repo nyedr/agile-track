@@ -1,6 +1,5 @@
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
-import LargeHeading from "@/components/ui/LargeHeading";
 import LinkButton from "@/components/ui/LinkButton";
 import Image from "next/image";
 import Link from "next/link";
@@ -92,7 +91,7 @@ const page = () => {
 
                 <div className="col-span-6 sm:col-span-3">
                   <label
-                    htmlFor="Password"
+                    htmlFor="password"
                     className="block text-sm font-medium text-gray-700 dark:text-gray-200"
                   >
                     {" "}
@@ -101,7 +100,7 @@ const page = () => {
 
                   <Input
                     type="password"
-                    id="Password"
+                    id="password"
                     name="password"
                     className="mt-1 w-full"
                   />
@@ -109,7 +108,7 @@ const page = () => {
 
                 <div className="col-span-6 sm:col-span-3">
                   <label
-                    htmlFor="PasswordConfirmation"
+                    htmlFor="password_confirmation"
                     className="block text-sm font-medium text-gray-700 dark:text-gray-200"
                   >
                     {" "}
@@ -126,18 +125,18 @@ const page = () => {
               </div>
 
               <div className="my-2">
-                <label htmlFor="MarketingAccept" className="flex gap-4">
+                <label htmlFor="marketing_accept" className="flex gap-4">
                   <input
                     type="checkbox"
-                    id="MarketingAccept"
+                    id="marketing_accept"
                     name="marketing_accept"
                     className="h-5 w-5 cursor-pointer rounded-md border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:focus:ring-offset-gray-900"
                   />
 
                   <span className="text-sm text-gray-700 dark:text-gray-200">
                     {" "}
-                    I want to receive emails about events, product updates and
-                    company announcements.{" "}
+                    I want to receive emails about events, issue and project
+                    updates, and company announcements.{" "}
                   </span>
                 </label>
               </div>
