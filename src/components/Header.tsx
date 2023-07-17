@@ -66,10 +66,10 @@ const Header: FC = () => {
               <span className="sr-only">Menu</span>
               <Image
                 alt="User image"
-                src={
-                  "https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                }
-                className="h-10 w-10 rounded-full object-cover"
+                src={"https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"}
+                className="rounded-full object-cover"
+                width={40}
+                height={40}
               />
 
               <p className="ms-2 hidden text-left text-xs sm:block">
