@@ -1,7 +1,12 @@
 import { LiaLaptopSolid } from "react-icons/lia";
 import { LuMoon } from "react-icons/lu";
 import { HiOutlineSun } from "react-icons/hi";
-import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import {
+  BsChevronLeft,
+  BsChevronRight,
+  BsCircle,
+  BsCheckLg,
+} from "react-icons/bs";
 import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineBell } from "react-icons/ai";
 import { TbFolderPlus } from "react-icons/tb";
@@ -19,6 +24,8 @@ export const Icons = {
   FolderAdd: TbFolderPlus,
   Search: GoSearch,
   Menu: FiMenu,
+  Circle: BsCircle,
+  Check: BsCheckLg,
 };
 
 export default Icons;
