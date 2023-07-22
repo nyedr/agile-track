@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   images: {
-    domains: ["images.unsplash.com", "assets.example.com"],
+    domains: ["i.postimg.cc", "images.unsplash.com", "assets.example.com"],
     remotePatterns: [
       {
         protocol: "https",

@@ -17,7 +17,7 @@ const NotFound: FC = ({}) => {
           Sorry, the page you are looking for could not be found or has been
           removed.
         </p>
-        <LinkButton href=".." variant="color" className="gap-x-1">
+        <LinkButton href=".." variant="color" className="gap-x-1 whitespace-nowrap">
           Go back
           <svg
             xmlns="http://www.w3.org/2000/svg"
