@@ -4,7 +4,7 @@ import { BiLoaderAlt } from "react-icons/bi";
 import { ButtonHTMLAttributes, forwardRef } from "react";
 
 export const buttonVariants = cva(
-  "inline-flex duration-300 items-center font-medium justify-center",
+  "inline-flex duration-300 items-center font-medium justify-center outline-none",
   {
     variants: {
       variant: {
@@ -27,7 +27,7 @@ export const buttonVariants = cva(
         sm: "h-9 px-2 font-sm",
         lg: "py-3 px-12",
         full: "w-full h-10",
-        header: "p-2.5"
+        header: "p-2.5",
       },
     },
     defaultVariants: {

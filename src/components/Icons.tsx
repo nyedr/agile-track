@@ -13,7 +13,7 @@ import { TbFolderPlus } from "react-icons/tb";
 import { GoSearch } from "react-icons/go";
 import { FiMenu } from "react-icons/fi";
 
-export const Icons = {
+const Icons = {
   ChevronLeft: BsChevronLeft,
   ChevronRight: BsChevronRight,
   Sun: HiOutlineSun,
