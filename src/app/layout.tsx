@@ -3,7 +3,6 @@ import { Toaster } from "@/components/ui/toast";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Header from "@/components/Header";
 
 const inter = Inter({
   weight: ["400", "500", "600", "700"],
@@ -25,7 +24,6 @@ export default function RootLayout({
         <Providers>
           {children}
           <Toaster position="bottom-left" />
-          <Header />
         </Providers>
       </body>
     </html>
