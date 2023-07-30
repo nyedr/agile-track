@@ -10,3 +10,125 @@ datasource db {
   url      = env("DATABASE_URL")  
 }
 
+enum Role {
+  ADMIN
+  PROJECT_MANAGER
+  TEAM_MEMBER
+  TESTER
+  DEVELOPER
+}
+
+model User {
+  id                String          @id @default(auto()) @map("_id") @db.ObjectId
+  username          String          @unique
+  password          String
+  email             String          @unique
+  role              Role
+  projectMembers    ProjectMember[]
+  issues            Issue[]
+  comments          Comment[]
+  notifications     Notification[]
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  assignedIssues    Issue[]         @relation("AssigneeToIssue")
+  managedProjects   Project[]       @relation("ProjectManagerToProject")
+  deletedAt         DateTime?
+}
+
+enum Statuses {
+  OPEN
+  IN_PROGRESS
+  DONE
+  CLOSED
+}
+
+model Project {
+  id                String          @id @default(auto()) @map("_id") @db.ObjectId
+  name              String
+  description       String
+  status            Statuses
+  startDate         DateTime
+  endDate           DateTime
+  projectMembers    ProjectMember[]
+  issues            Issue[]
+  projectManager    User            @relation("ProjectManagerToProject", fields: [projectManagerId], references: [id])
+  projectManagerId  String          @db.ObjectId
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  deletedAt         DateTime?
+}
+
+model ProjectMember {
+  id                String          @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String          @db.ObjectId
+  projectId         String          @db.ObjectId
+  user              User            @relation(fields: [userId], references: [id])
+  project           Project         @relation(fields: [projectId], references: [id])
+  deletedAt         DateTime?
+  @@unique([userId, projectId])
+}
+
+model Issue {
+  id                String          @id @default(auto()) @map("_id") @db.ObjectId
+  title             String
+  description       String
+  status            Statuses
+  priority          String
+  type              String
+  projectId         String          @db.ObjectId
+  project           Project         @relation(fields: [projectId], references: [id])
+  assigneeId        String          @db.ObjectId
+  assignee          User            @relation("AssigneeToIssue", fields: [assigneeId], references: [id])
+  reporterId        String          @db.ObjectId
+  reporter          User            @relation(fields: [reporterId], references: [id])
+  comments          Comment[]
+  dueDate           DateTime?
+  closedAt          DateTime?
+  resolvedAt        DateTime?
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  deletedAt         DateTime?
+}
+
+model Comment {
+  id                String          @id @default(auto()) @map("_id") @db.ObjectId
+  content           String
+  issueId           String          @db.ObjectId
+  issue             Issue           @relation(fields: [issueId], references: [id])
+  userId            String          @db.ObjectId
+  user              User            @relation(fields: [userId], references: [id])
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  deletedAt         DateTime?
+}
+
+enum NotificationType {
+  ISSUE_CREATED
+  ISSUE_UPDATED
+  ISSUE_DELETED
+  ISSUE_ASSIGNED
+  COMMENT_CREATED
+  COMMENT_UPDATED
+  COMMENT_DELETED
+  PROJECT_MEMBER_ADDED
+  PROJECT_MEMBER_REMOVED
+  PROJECT_MANAGER_ASSIGNED
+  PROJECT_MANAGER_REMOVED
+  PROJECT_ASSIGNED
+  PROJECT_CREATED
+  PROJECT_UPDATED
+  PROJECT_DELETED
+}
+
+model Notification {
+  id                String          @id @default(auto()) @map("_id") @db.ObjectId
+  content           String
+  targetId          String          @db.ObjectId
+  type              NotificationType
+  user              User            @relation(fields: [userId], references: [id])
+  userId            String          @db.ObjectId
+  isRead            Boolean         @default(false)
+  link              String
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+}

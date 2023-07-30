@@ -1,5 +1,5 @@
 import { NextAuthOptions } from "next-auth";
-import prisma from "@/lib/prismadb";
+import { prisma } from "@/lib/prismadb";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
@@ -62,9 +62,13 @@ const authOptions: NextAuthOptions = {
           },
         });
 
+        if (!user) {
+          throw new Error("User not found.");
+        }
+
         const isPasswordMatch = await bcrypt.compare(
           credentials.password,
-          user.hashedPassword
+          user.password
         );
 
         if (!isPasswordMatch) throw new Error("Incorret password, try again.");
