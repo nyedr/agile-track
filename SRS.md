@@ -4,13 +4,14 @@
 
 ### 1.1 Purpose
 
-This document describes the software requirements for a full-stack application (hereafter referred to as "the Application") that functions similarly to Jira, a popular issue tracking and project management software. This document is intended to be used by the members of the development team and will form the basis of the design and development process. 
+This document describes the software requirements for a full-stack application (hereafter referred to as "the Application") that functions similarly to Jira, a popular issue tracking and project management software. This document is intended to be used by the members of the development team and will form the basis of the design and development process.
 
-The application will use Next.js and TypeScript for the main framework, Prisma and PostgreSQL for the database, TailwindCSS for the frontend, NextAuth for authentication, Helmet.js for security, and Zod for input validation.
+The application will use Next.js and TypeScript for the main framework, Prisma and MongoDB for the database, TailwindCSS for the frontend, NextAuth for authentication, Helmet.js for security, and Zod for input validation.
 
 ### 1.2 Scope
 
 The application will provide the following functionalities:
+
 - User Registration and Login
 - Project Management
 - Issue Tracking
@@ -23,6 +24,7 @@ The application will provide the following functionalities:
 ### 2.1 User Classes and Characteristics
 
 The Application will have three types of users:
+
 1. **Administrators**: They have full control over the application and can create, edit, delete projects and users, assign user roles, and manage system settings.
 2. **Project Managers**: They can create, edit, and delete projects they own. They can also manage issues within these projects.
 3. **Team Members**: They can view and update issues in the projects they are assigned to.
@@ -65,7 +67,7 @@ The application will be a web-based application with a responsive design that wo
 
 ### 4.2 Software Interfaces
 
-The application will use Next.js and TypeScript for the main framework, Prisma and PostgreSQL for the database, NextAuth for authentication, Helmet.js for security, and Zod for input validation.
+The application will use Next.js and TypeScript for the main framework, Prisma and MongoDB for the database, NextAuth for authentication, Helmet.js for security, and Zod for input validation.
 
 ## 5. Non-Functional Requirements
 
@@ -93,59 +95,59 @@ The application should be developed using agile methodologies, with regular spri
 
 1. **Users**: Stores user data.
 
-| Column Name | Data Type | Description |
-|-------------|-----------|-------------|
-| id | SERIAL PRIMARY KEY | Unique identifier for the user |
-| username | VARCHAR(255) | Username of the user |
-| password | VARCHAR(255) | Hashed password |
-| email | VARCHAR(255) | Email address |
-| role | VARCHAR(255) | Role of the user (Admin, Project Manager, Team Member) |
+| Column Name | Data Type          | Description                                            |
+| ----------- | ------------------ | ------------------------------------------------------ |
+| id          | SERIAL PRIMARY KEY | Unique identifier for the user                         |
+| username    | VARCHAR(255)       | Username of the user                                   |
+| password    | VARCHAR(255)       | Hashed password                                        |
+| email       | VARCHAR(255)       | Email address                                          |
+| role        | VARCHAR(255)       | Role of the user (Admin, Project Manager, Team Member) |
 
 2. **Projects**: Stores project data.
 
-| Column Name | Data Type | Description |
-|-------------|-----------|-------------|
-| id | SERIAL PRIMARY KEY | Unique identifier for the project |
-| name | VARCHAR(255) | Name of the project |
-| description | TEXT | Description of the project |
-| start_date | DATE | Start date of the project |
-| end_date | DATE | End date of the project |
-| project_manager_id | INTEGER FOREIGN KEY | References id in Users table |
+| Column Name        | Data Type           | Description                       |
+| ------------------ | ------------------- | --------------------------------- |
+| id                 | SERIAL PRIMARY KEY  | Unique identifier for the project |
+| name               | VARCHAR(255)        | Name of the project               |
+| description        | TEXT                | Description of the project        |
+| start_date         | DATE                | Start date of the project         |
+| end_date           | DATE                | End date of the project           |
+| project_manager_id | INTEGER FOREIGN KEY | References id in Users table      |
 
 3. **ProjectMembers**: Stores the relationship between users and projects.
 
-| Column Name | Data Type | Description |
-|-------------|-----------|-------------|
-| id | SERIAL PRIMARY KEY | Unique identifier |
-| user_id | INTEGER FOREIGN KEY | References id in Users table |
-| project_id | INTEGER FOREIGN KEY | References id in Projects table |
+| Column Name | Data Type           | Description                     |
+| ----------- | ------------------- | ------------------------------- |
+| id          | SERIAL PRIMARY KEY  | Unique identifier               |
+| user_id     | INTEGER FOREIGN KEY | References id in Users table    |
+| project_id  | INTEGER FOREIGN KEY | References id in Projects table |
 
 4. **Issues**: Stores issue data.
 
-| Column Name | Data Type | Description |
-|-------------|-----------|-------------|
-| id | SERIAL PRIMARY KEY | Unique identifier for the issue |
-| title | VARCHAR(255) | Title of the issue |
-| description | TEXT | Description of the issue |
-| type | VARCHAR(255) | Type of the issue (bug, feature, etc.) |
-| priority | VARCHAR(255) | Priority of the issue |
-| status | VARCHAR(255) | Status of the issue (to do, in progress, done) |
-| project_id | INTEGER FOREIGN KEY | References id in Projects table |
-| assignee_id | INTEGER FOREIGN KEY | References id in Users table |
+| Column Name | Data Type           | Description                                    |
+| ----------- | ------------------- | ---------------------------------------------- |
+| id          | SERIAL PRIMARY KEY  | Unique identifier for the issue                |
+| title       | VARCHAR(255)        | Title of the issue                             |
+| description | TEXT                | Description of the issue                       |
+| type        | VARCHAR(255)        | Type of the issue (bug, feature, etc.)         |
+| priority    | VARCHAR(255)        | Priority of the issue                          |
+| status      | VARCHAR(255)        | Status of the issue (to do, in progress, done) |
+| project_id  | INTEGER FOREIGN KEY | References id in Projects table                |
+| assignee_id | INTEGER FOREIGN KEY | References id in Users table                   |
 
 5. **Comments**: Stores comments on issues.
 
-| Column Name | Data Type | Description |
-|-------------|-----------|-------------|
-| id | SERIAL PRIMARY KEY | Unique identifier for the comment |
-| content | TEXT | Content of the comment |
-| issue_id | INTEGER FOREIGN KEY | References id in Issues table |
-| author_id | INTEGER FOREIGN KEY | References id in Users table |
+| Column Name | Data Type           | Description                       |
+| ----------- | ------------------- | --------------------------------- |
+| id          | SERIAL PRIMARY KEY  | Unique identifier for the comment |
+| content     | TEXT                | Content of the comment            |
+| issue_id    | INTEGER FOREIGN KEY | References id in Issues table     |
+| author_id   | INTEGER FOREIGN KEY | References id in Users table      |
 
 6. **Notifications**: Stores notifications for users.
 
-| Column Name | Data Type | Description |
-|-------------|-----------|-------------|
-| id | SERIAL PRIMARY KEY | Unique identifier for the notification |
-| content | TEXT | Content of the notification |
-| user_id | INTEGER FOREIGN KEY | References id in Users table |
+| Column Name | Data Type           | Description                            |
+| ----------- | ------------------- | -------------------------------------- |
+| id          | SERIAL PRIMARY KEY  | Unique identifier for the notification |
+| content     | TEXT                | Content of the notification            |
+| user_id     | INTEGER FOREIGN KEY | References id in Users table           |
