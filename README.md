@@ -43,7 +43,7 @@ With AgileTrack, you can manage multiple projects, create and assign tasks, and 
    npm install
    ```
 
-3. Set up your .env file as per the .env.example file included in the repository.
+3. Set up your .env file as per the [.env.example](.env.example) file included in the repository.
 
 4. Run the development server
 
