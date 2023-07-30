@@ -33,7 +33,7 @@ With AgileTrack, you can manage multiple projects, create and assign tasks, and 
 1. Clone this repository
 
    ```
-   git clone https://github.com/[name]/agile-track.git
+   git clone https://github.com/eidangar/agile-track.git
    ```
 
 2. Install dependencies
@@ -63,4 +63,4 @@ GNU General Public License. See the [LICENSE](LICENSE) file for more details.
 
 ## Contact
 
-If you want to contact me, you can reach me at [name]cia787i@gmail.com.
+If you want to contact me, you can reach me at eidangarcia787i@gmail.com.
