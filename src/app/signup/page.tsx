@@ -1,10 +1,53 @@
+"use client";
+
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import LinkButton from "@/components/ui/LinkButton";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { userSignupSchema, UserSignup } from "@/types/forms";
+import { toast } from "@/ui/toast";
+import { signIn } from "next-auth/react";
 
-const page = () => {
+const Signup = () => {
+  const [chosenProvider, setChosenProvider] = useState<
+    "google" | "github" | null
+  >(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const handleUserSignup = async (event: React.FormEvent<HTMLFormElement>) => {
+    setIsLoading(true);
+
+    event.preventDefault();
+
+    try {
+      if (chosenProvider) {
+        await signIn(chosenProvider);
+      } else {
+        const data = new FormData(event.currentTarget);
+        userSignupSchema.parse(data);
+
+        const userSignup: UserSignup = {
+          first_name: data.get("first_name") as string,
+          last_name: data.get("last_name") as string,
+          email: data.get("email") as string,
+          password: data.get("password") as string,
+          password_confirmation: data.get("password_confirmation") as string,
+        };
+      }
+    } catch (error: any) {
+      if (error.hasOwnProperty("message"))
+        toast({
+          title: "Error",
+          message: error.message,
+          type: "error",
+        });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
@@ -36,7 +79,7 @@ const page = () => {
               tracking, and team collaboration.
             </p>
 
-            <form action="#">
+            <form onSubmit={handleUserSignup}>
               <div className="mb-6 mt-8 grid grid-cols-6 gap-6">
                 <div className="col-span-6 sm:col-span-3">
                   <label
@@ -193,14 +236,22 @@ const page = () => {
                 </p>
               </div>
               <div className="mt-3 grid w-full grid-cols-2 items-center justify-center gap-x-3">
-                <Button variant="provider">
+                <Button
+                  isLoading={chosenProvider === "google" && isLoading}
+                  onClick={() => setChosenProvider("google")}
+                  variant="provider"
+                >
                   <Image
                     alt="Google"
                     className="h-8 w-8"
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/32px-Google_%22G%22_Logo.svg.png"
                   />
                 </Button>
-                <Button variant="provider">
+                <Button
+                  isLoading={chosenProvider === "github" && isLoading}
+                  onClick={() => setChosenProvider("github")}
+                  variant="provider"
+                >
                   <svg
                     className="w-8 h-8"
                     xmlns="http://www.w3.org/2000/svg"
@@ -220,4 +271,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Signup;

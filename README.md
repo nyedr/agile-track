@@ -18,7 +18,7 @@ With AgileTrack, you can manage multiple projects, create and assign tasks, and 
 ## Tech Stack
 
 - Next.js and TypeScript: Main framework for building the application.
-- Prisma and PostgreSQL: Database management.
+- Prisma and MongoDB: Database management.
 - TailwindCSS: For styling the frontend.
 - NextAuth: For user authentication.
 - Helmet.js: For securing HTTP requests.
