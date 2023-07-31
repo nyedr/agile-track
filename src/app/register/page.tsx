@@ -9,6 +9,8 @@ import { useState } from "react";
 import { userRegisterSchema, UserRegisterData } from "@/types/forms";
 import { toast } from "@/ui/toast";
 import { signIn } from "next-auth/react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const Register = () => {
   const [chosenProvider, setChosenProvider] = useState<
@@ -16,51 +18,54 @@ const Register = () => {
   >(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const handleUserRegister = async (event: React.FormEvent<HTMLFormElement>) => {
+  const {
+    register,
+    handleSubmit,
+    trigger,
+    formState: { errors, isValid },
+  } = useForm<UserRegisterData>({
+    resolver: zodResolver(userRegisterSchema),
+  });
+
+  const handleUserRegister: SubmitHandler<UserRegisterData> = async (
+    data: UserRegisterData
+  ) => {
     setIsLoading(true);
 
-    event.preventDefault();
-
     try {
-        if (!chosenProvider) throw new Error("Invalid provider, try again.");
+      if (!chosenProvider) throw new Error("Invalid provider, try again.");
 
-        if (chosenProvider !== "credentials") {
-          await signIn(chosenProvider);
+      if (chosenProvider !== "credentials") {
+        await signIn(chosenProvider);
 
-          toast({
-            title: "Success",
-            message: "You have been successfuly registered and logged in!",
-            type: "success",
-          });
-        } else {
-          const data = new FormData(event.currentTarget);
-          userRegisterSchema.parse(data);
-  
-          const userRegistrationData: UserRegisterData = {
-            first_name: data.get("first_name") as string,
-            last_name: data.get("last_name") as string,
-            email: data.get("email") as string,
-            password: data.get("password") as string,
-            password_confirmation: data.get("password_confirmation") as string,
-          };
-  
-          const rawPostResponse = await fetch("/api/auth/register", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(userRegistrationData),
-          });
-  
-          const postResponse = await rawPostResponse.json();
-          const isError = postResponse.hasOwnProperty("error");
-  
-          toast({
-            title: isError ? "Error" : "Success",
-            message: isError ? postResponse?.error : postResponse?.message,
-            type: isError ? "error" : "success",
-          });
+        toast({
+          title: "Success",
+          message: "You have been successfuly registered and logged in!",
+          type: "success",
+        });
+      } else {
+        if (!isValid) {
+          trigger();
+          throw new Error("Invalid form data, try again.");
         }
+
+        const rawPostResponse = await fetch("/api/auth/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        const postResponse = await rawPostResponse.json();
+        const isError = postResponse.hasOwnProperty("error");
+
+        toast({
+          title: isError ? "Error" : "Success",
+          message: isError ? postResponse?.error : postResponse?.message,
+          type: isError ? "error" : "success",
+        });
+      }
     } catch (error: any) {
       if (error.hasOwnProperty("message"))
         toast({
@@ -78,13 +83,13 @@ const Register = () => {
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
         <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6">
           <div className="h-full w-full relative">
-          <Image
-            alt="Pattern"
-            src="https://i.postimg.cc/gJW9DG8h/blue-Background-Pattern.webp"
-            className="absolute inset-0 object-cover"
-            fill={true}
-            loading="lazy"
-          />
+            <Image
+              alt="Pattern"
+              src="https://i.postimg.cc/gJW9DG8h/blue-Background-Pattern.webp"
+              className="absolute inset-0 object-cover"
+              fill={true}
+              loading="lazy"
+            />
           </div>
         </aside>
 
@@ -109,7 +114,7 @@ const Register = () => {
               tracking, and team collaboration.
             </p>
 
-            <form onSubmit={handleUserRegister}>
+            <form onSubmit={handleSubmit(handleUserRegister)}>
               <div className="mb-6 mt-8 grid grid-cols-6 gap-6">
                 <div className="col-span-6 sm:col-span-3">
                   <label
@@ -123,9 +128,14 @@ const Register = () => {
                   <Input
                     type="text"
                     id="FirstName"
-                    name="first_name"
                     className="mt-1 w-full"
+                    {...register("firstName")}
                   />
+                  {errors.firstName && (
+                    <p className="text-red-500 text-xs italic">
+                      {errors.firstName.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
@@ -140,9 +150,14 @@ const Register = () => {
                   <Input
                     type="text"
                     id="LastName"
-                    name="last_name"
                     className="mt-1 w-full"
+                    {...register("lastName")}
                   />
+                  {errors.lastName && (
+                    <p className="text-red-500 text-xs italic">
+                      {errors.lastName.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="col-span-6">
@@ -157,9 +172,14 @@ const Register = () => {
                   <Input
                     type="email"
                     id="Email"
-                    name="email"
                     className="mt-1 w-full"
+                    {...register("email")}
                   />
+                  {errors.email && (
+                    <p className="text-red-500 text-xs italic">
+                      {errors.email.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
@@ -174,14 +194,19 @@ const Register = () => {
                   <Input
                     type="password"
                     id="password"
-                    name="password"
                     className="mt-1 w-full"
+                    {...register("password")}
                   />
+                  {errors.password && (
+                    <p className="text-red-500 text-xs italic">
+                      {errors.password.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
                   <label
-                    htmlFor="password_confirmation"
+                    htmlFor="passwordConfirmation"
                     className="block text-sm font-medium text-gray-700 dark:text-gray-200"
                   >
                     {" "}
@@ -190,10 +215,15 @@ const Register = () => {
 
                   <Input
                     type="password"
-                    id="password_confirmation"
-                    name="password_confirmation"
+                    id="passwordConfirmation"
                     className="mt-1 w-full"
+                    {...register("passwordConfirmation")}
                   />
+                  {errors.passwordConfirmation && (
+                    <p className="text-red-500 text-xs italic">
+                      {errors.passwordConfirmation.message}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -202,14 +232,14 @@ const Register = () => {
                   <input
                     type="checkbox"
                     id="marketing_accept"
-                    name="marketing_accept"
                     className="h-5 w-5 cursor-pointer rounded-md border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:focus:ring-offset-gray-900"
+                    {...register("notificationsAllowed")}
                   />
 
                   <span className="text-sm text-gray-700 dark:text-gray-200">
                     {" "}
-                    I want to receive emails about events, issue and project
-                    updates, and company announcements.{" "}
+                    I don{"'"}t want to receive emails about events, issue and
+                    project updates, and company announcements.{" "}
                   </span>
                 </label>
               </div>

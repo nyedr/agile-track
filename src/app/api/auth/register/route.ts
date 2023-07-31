@@ -1,23 +1,24 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest } from "next";
 import { userRegisterSchema, UserRegisterData } from "@/types/forms";
 import { prisma } from "@/lib/prismadb";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 
-export const POST = async (
-  req: NextApiRequest
-) => {
+export const POST = async (req: NextApiRequest) => {
   const parsedInput = await userRegisterSchema.safeParseAsync(
     req.body as UserRegisterData
   );
 
   if (!parsedInput?.success) {
-    return NextResponse.json({
-      error: "Invalid fields: " + parsedInput?.error.message,
-    }, { status: 400 });
+    return NextResponse.json(
+      {
+        error: "Invalid fields: " + parsedInput?.error.message,
+      },
+      { status: 400 }
+    );
   }
 
-  const { first_name, last_name, email, password } = parsedInput.data;
+  const { firstName, lastName, email, password } = parsedInput.data;
 
   // check if user exists
   const user = await prisma.user.findUnique({
@@ -27,9 +28,12 @@ export const POST = async (
   });
 
   if (user) {
-    return NextResponse.json({
-      error: "User already exists",
-    }, { status: 400 });
+    return NextResponse.json(
+      {
+        error: "User already exists",
+      },
+      { status: 400 }
+    );
   }
 
   // hash password
@@ -38,11 +42,14 @@ export const POST = async (
   // create user
   const newUser = await prisma.user.create({
     data: {
-      username: `${first_name} ${last_name}`,
+      username: `${firstName} ${lastName}`,
       email,
       password: hashedPassword,
     },
   });
 
-  return NextResponse.json({ user: newUser, message: "User created successfully" });
+  return NextResponse.json({
+    user: newUser,
+    message: "User created successfully",
+  });
 };

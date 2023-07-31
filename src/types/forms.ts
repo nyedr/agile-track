@@ -2,8 +2,8 @@ import { z } from "zod";
 
 export const userRegisterSchema = z
   .object({
-    first_name: z.string().nonempty({ message: "First name is required" }),
-    last_name: z.string().nonempty({ message: "Last name is required" }),
+    firstName: z.string().nonempty({ message: "First name is required" }),
+    lastName: z.string().nonempty({ message: "Last name is required" }),
     email: z
       .string()
       .email({ message: "Invalid email address" })
@@ -29,11 +29,12 @@ export const userRegisterSchema = z
       // })
       .min(8, { message: "Password must be at least 8 characters." })
       .max(32, { message: "Password must be at most 32 characters." }),
-    password_confirmation: z
+    passwordConfirmation: z
       .string()
       .min(8, { message: "Password must be at least 8 characters long" }),
+    notificationsAllowed: z.boolean(),
   })
-  .refine((data) => data.password === data.password_confirmation, {
+  .refine((data) => data.password === data.passwordConfirmation, {
     message: "Passwords do not match",
     path: ["password_confirmation"],
   });

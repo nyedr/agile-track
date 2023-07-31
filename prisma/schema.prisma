@@ -32,6 +32,7 @@ model User {
   updatedAt         DateTime        @updatedAt
   assignedIssues    Issue[]         @relation("AssigneeToIssue")
   managedProjects   Project[]       @relation("ProjectManagerToProject")
+  notificationsAllowed   Boolean    @default(true)
   deletedAt         DateTime?
 }
 
