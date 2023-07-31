@@ -6,54 +6,61 @@ import LinkButton from "@/components/ui/LinkButton";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { userSignupSchema, UserSignupData } from "@/types/forms";
+import { userRegisterSchema, UserRegisterData } from "@/types/forms";
 import { toast } from "@/ui/toast";
 import { signIn } from "next-auth/react";
 
-const Signup = () => {
+const Register = () => {
   const [chosenProvider, setChosenProvider] = useState<
-    "google" | "github" | null
+    "google" | "github" | null | "credentials"
   >(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const handleUserSignup = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleUserRegister = async (event: React.FormEvent<HTMLFormElement>) => {
     setIsLoading(true);
 
     event.preventDefault();
 
     try {
-      if (chosenProvider) {
-        await signIn(chosenProvider);
-      } else {
-        const data = new FormData(event.currentTarget);
-        userSignupSchema.parse(data);
+        if (!chosenProvider) throw new Error("Invalid provider, try again.");
 
-        const userSignup: UserSignupData = {
-          first_name: data.get("first_name") as string,
-          last_name: data.get("last_name") as string,
-          email: data.get("email") as string,
-          password: data.get("password") as string,
-          password_confirmation: data.get("password_confirmation") as string,
-        };
+        if (chosenProvider !== "credentials") {
+          await signIn(chosenProvider);
 
-        const rawPostResponse = await fetch("/api/auth/signup", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(userSignup),
-        });
-
-        const postResponse = await rawPostResponse.json();
-
-        const isError = postResponse.hasOwnProperty("error");
-
-        toast({
-          title: isError ? "Error" : "Success",
-          message: isError ? postResponse?.error : postResponse?.message,
-          type: isError ? "error" : "success",
-        });
-      }
+          toast({
+            title: "Success",
+            message: "You have been successfuly registered and logged in!",
+            type: "success",
+          });
+        } else {
+          const data = new FormData(event.currentTarget);
+          userRegisterSchema.parse(data);
+  
+          const userRegistrationData: UserRegisterData = {
+            first_name: data.get("first_name") as string,
+            last_name: data.get("last_name") as string,
+            email: data.get("email") as string,
+            password: data.get("password") as string,
+            password_confirmation: data.get("password_confirmation") as string,
+          };
+  
+          const rawPostResponse = await fetch("/api/auth/register", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userRegistrationData),
+          });
+  
+          const postResponse = await rawPostResponse.json();
+          const isError = postResponse.hasOwnProperty("error");
+  
+          toast({
+            title: isError ? "Error" : "Success",
+            message: isError ? postResponse?.error : postResponse?.message,
+            type: isError ? "error" : "success",
+          });
+        }
     } catch (error: any) {
       if (error.hasOwnProperty("message"))
         toast({
@@ -67,14 +74,18 @@ const Signup = () => {
   };
 
   return (
-    <section className="bg-white dark:bg-gray-900">
+    <section className="bg-white dark:bg-gray-900 w-full">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
         <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6">
+          <div className="h-full w-full relative">
           <Image
             alt="Pattern"
-            src="https://images.unsplash.com/photo-1605106702734-205df224ecce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-            className="absolute inset-0 h-full w-full object-cover"
+            src="https://i.postimg.cc/gJW9DG8h/blue-Background-Pattern.webp"
+            className="absolute inset-0 object-cover"
+            fill={true}
+            loading="lazy"
           />
+          </div>
         </aside>
 
         <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
@@ -83,8 +94,9 @@ const Signup = () => {
               <span className="sr-only">Home</span>
               <Image
                 alt="Logo"
-                src="https://i.postImage.cc/rm6Mj3gR/output.png"
-                className="h-20"
+                src="https://i.postimg.cc/1Xk8SYrb/agile-Track-Logo.png"
+                width={80}
+                height={80}
               />
             </Link>
 
@@ -97,7 +109,7 @@ const Signup = () => {
               tracking, and team collaboration.
             </p>
 
-            <form onSubmit={handleUserSignup}>
+            <form onSubmit={handleUserRegister}>
               <div className="mb-6 mt-8 grid grid-cols-6 gap-6">
                 <div className="col-span-6 sm:col-span-3">
                   <label
@@ -208,6 +220,7 @@ const Signup = () => {
                   <LinkButton
                     href="/terms"
                     variant="color"
+                    size="sm"
                     className="text-gray-700 underline dark:text-gray-200"
                   >
                     {" "}
@@ -217,6 +230,7 @@ const Signup = () => {
                   <LinkButton
                     variant="color"
                     href="/privacy"
+                    size="sm"
                     className="text-gray-700 underline dark:text-gray-200"
                   >
                     {" "}
@@ -239,8 +253,9 @@ const Signup = () => {
                   Already have an account?
                   <LinkButton
                     href="/login"
+                    size="sm"
                     variant={"underline"}
-                    className="text-gray-700 underline dark:text-gray-200"
+                    className="text-gray-700 underline dark:text-gray-200 hover:text-gray-600 duration-300 dark:hover:text-gray-300"
                   >
                     Log in
                   </LinkButton>
@@ -257,11 +272,13 @@ const Signup = () => {
                 <Button
                   isLoading={chosenProvider === "google" && isLoading}
                   onClick={() => setChosenProvider("google")}
+                  className="h-12"
                   variant="provider"
                 >
                   <Image
                     alt="Google"
-                    className="h-8 w-8"
+                    width="24"
+                    height="24"
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/32px-Google_%22G%22_Logo.svg.png"
                   />
                 </Button>
@@ -269,6 +286,7 @@ const Signup = () => {
                   isLoading={chosenProvider === "github" && isLoading}
                   onClick={() => setChosenProvider("github")}
                   variant="provider"
+                  className="h-12"
                 >
                   <svg
                     className="w-8 h-8"
@@ -289,4 +307,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Register;

@@ -3,7 +3,7 @@ import { VariantProps, cva } from "class-variance-authority";
 import { InputHTMLAttributes, forwardRef } from "react";
 
 const inputVariants = cva(
-  "rounded-md block text-slate-900 placeholder-slate-400 invalid:border-pink-500 invalid:text-pink-600 focus:outline-none duration-300 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:bg-slate-50 disabled:border-slate-200 disabled:text-slate-500 disabled:shadow-none sm:leading-6",
+  "block text-slate-900 placeholder-slate-400 invalid:border-pink-500 invalid:text-pink-600 focus:outline-none focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:bg-slate-50 disabled:border-slate-200 disabled:text-slate-500 disabled:shadow-none sm:leading-6",
   {
     variants: {
       variant: {
