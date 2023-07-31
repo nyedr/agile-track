@@ -23,7 +23,7 @@ model User {
   username          String          @unique
   password          String
   email             String          @unique
-  role              Role
+  roles             Role[]          @default([TEAM_MEMBER])
   projectMembers    ProjectMember[]
   issues            Issue[]
   comments          Comment[]

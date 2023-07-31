@@ -6,7 +6,7 @@ import LinkButton from "@/components/ui/LinkButton";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { userSignupSchema, UserSignup } from "@/types/forms";
+import { userSignupSchema, UserSignupData } from "@/types/forms";
 import { toast } from "@/ui/toast";
 import { signIn } from "next-auth/react";
 
@@ -28,13 +28,31 @@ const Signup = () => {
         const data = new FormData(event.currentTarget);
         userSignupSchema.parse(data);
 
-        const userSignup: UserSignup = {
+        const userSignup: UserSignupData = {
           first_name: data.get("first_name") as string,
           last_name: data.get("last_name") as string,
           email: data.get("email") as string,
           password: data.get("password") as string,
           password_confirmation: data.get("password_confirmation") as string,
         };
+
+        const rawPostResponse = await fetch("/api/auth/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userSignup),
+        });
+
+        const postResponse = await rawPostResponse.json();
+
+        const isError = postResponse.hasOwnProperty("error");
+
+        toast({
+          title: isError ? "Error" : "Success",
+          message: isError ? postResponse?.error : postResponse?.message,
+          type: isError ? "error" : "success",
+        });
       }
     } catch (error: any) {
       if (error.hasOwnProperty("message"))
