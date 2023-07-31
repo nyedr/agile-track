@@ -13,8 +13,8 @@ const linkVariants = cva("text-slate-900 dark:text-slate-200 bg-transparent", {
       color: "text-sky-300 hover:text-sky-400 duration-300 font-medium",
     },
     size: {
-      sm: "text-sm",
-      default: "text-base py-2 px-4",
+      sm: "text-sm px-1",
+      default: "text-base",
     },
   },
   defaultVariants: {
