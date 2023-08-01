@@ -1,6 +1,9 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { VariantProps, cva } from "class-variance-authority";
-import { InputHTMLAttributes, forwardRef } from "react";
+import { InputHTMLAttributes, forwardRef, useState } from "react";
+import Icons from "@/components/Icons";
 
 const inputVariants = cva(
   "block text-slate-900 placeholder-slate-400 invalid:border-pink-500 invalid:text-pink-600 focus:outline-none focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:bg-slate-50 disabled:border-slate-200 disabled:text-slate-500 disabled:shadow-none sm:leading-6",
@@ -25,16 +28,63 @@ const inputVariants = cva(
 
 interface InputProps
   extends InputHTMLAttributes<HTMLInputElement>,
-    VariantProps<typeof inputVariants> {}
+    VariantProps<typeof inputVariants> {
+      labelText?: string
+      isPrivateable?: boolean
+      error?: { message: string }
+      containerClass?: string
+    }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ className, inputSize, variant, ...props }, ref) => {
+  ({ className, inputSize, labelText, error, containerClass, isPrivateable, variant, ...props }, ref) => {
+    const [isPrivate, setIsPrivate] = useState<boolean>(true);
+
     return (
-      <input
-        ref={ref}
-        className={cn(inputVariants({ className, inputSize, variant }))}
-        {...props}
-      />
+      <div className={containerClass ?? "col-span-6 sm:col-span-3"}>
+        {labelText && 
+          (
+            <label
+              htmlFor={props.id}
+              className="block text-sm font-medium text-gray-700 dark:text-gray-200"
+            >
+              {labelText}
+            </label>
+          )
+        }
+
+        <div className="relative mt-2 w-full">
+          <input
+            ref={ref}
+            className={cn(inputVariants({ className, inputSize, variant }), "w-full")}
+            {...props}
+            type={isPrivateable ? (props.type === "password" && !isPrivate ? "text" : isPrivate ? "password" : props.type) : props.type}
+          />
+          {
+          isPrivateable && 
+          (
+            <span className="absolute inset-y-0 end-0 grid w-10 place-content-center">
+              <button type="button" className="text-gray-600 hover:text-gray-700">
+                <span className="sr-only">Hide</span>
+                {isPrivate ? 
+                    (
+                      <Icons.EyeInvisible onClick={() => setIsPrivate(prev => !prev)} className="h-5 w-5" />
+                    ) :
+                    (
+                      <Icons.EyeVisible onClick={() => setIsPrivate(prev => !prev)} className="h-5 w-5" />
+                    )
+                  }
+              </button>
+            </span>
+          )
+        }
+      </div>
+
+      {error && (
+        <p className="text-red-500 mt-1 text-sm">
+          {error.message}
+        </p>
+      )}
+      </div>
     );
   }
 );

@@ -18,7 +18,7 @@ export const buttonVariants = cva(
         ghost:
           "bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 dark:text-slate-400 data-[state=open]:bg-transparent dark:data-[state=open]:bg-transparent",
         provider:
-          "flex items-center justify-center rounded-lg border py-2.5 duration-150 hover:bg-gray-50 active:bg-gray-100 dark:bg-gray-800",
+          "flex text-slate-900 dark:text-slate-200 items-center justify-center rounded-lg border dark:border-slate-400 py-2.5 duration-150 hover:bg-gray-50 dark:hover:bg-gray-700 active:bg-gray-100 dark:bg-gray-800",
         header:
           "shrink-0 rounded-lg bg-white text-gray-600 shadow-sm dark:bg-slate-700 dark:text-slate-50 block shrink-0 rounded-lg bg-white text-gray-600 shadow-sm dark:bg-slate-700 dark:text-slate-50 hover:bg-gray-50 dark:hover:bg-slate-700",
       },
