@@ -9,11 +9,12 @@ const linkVariants = cva("text-slate-900 dark:text-slate-200 bg-transparent", {
       default:
         "hover:bg-slate-200 duration-300 dark:hover:bg-slate-600 no-underline rounded-md",
       underline:
-        "font-semibold hover:underline underline-offset-2 decoration-slate-900 dark:decoration-slate-200",
+        "font-semibold hover:underline underline-offset-2 decoration-slate-900 dark:decoration-slate-200 px-1",
       color: "text-sky-300 hover:text-sky-400 duration-300 font-medium",
+      sidebarItem: "focus:shadow-outline mt-1 inline-flex w-full transform items-center rounded-lg px-4 py-2 text-sm text-gray-500 transition duration-200 ease-in-out hover:bg-gray-50 hover:text-blue-500 dark:text-gray-200 dark:hover:bg-gray-600"
     },
     size: {
-      sm: "text-sm px-1",
+      sm: "text-sm",
       default: "text-base",
     },
   },
