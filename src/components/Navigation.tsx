@@ -1,12 +1,19 @@
 import type { ReactNode } from "react";
 import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
-const Navigation = ({ children, project }: { children: ReactNode }) => {
+interface NavigationProps {
+  children: ReactNode;
+  projectName: string;
+}
+
+const Navigation = ({ children, projectName }: NavigationProps) => {
   return (
     <div className="flex h-screen flex-col">
       <Header />
       <div className="flex h-full overflow-hidden bg-white">
-        <Sidebar projectTitle="" />
+        <Sidebar projectName={projectName} />
         <div className="flex w-0 flex-1 flex-col overflow-hidden">
           <main className="relative flex-1 overflow-y-auto focus:outline-none">
             <Breadcrumbs />

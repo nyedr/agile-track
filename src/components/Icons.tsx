@@ -7,10 +7,17 @@ import {
   BsCircle,
   BsCheckLg,
   BsJournalBookmarkFill,
-  BsSpeedometer2
+  BsSpeedometer2,
+  BsCalendarDate,
+  BsClipboardCheck,
+  BsDatabaseGear,
+  BsBell,
+  BsBoxes,
+  BsGear,
+  BsSignpost2,
 } from "react-icons/bs";
 import { BiChevronDown } from "react-icons/bi";
-import { AiOutlineBell, AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { TbFolderPlus } from "react-icons/tb";
 import { GoSearch } from "react-icons/go";
 import { FiMenu } from "react-icons/fi";
@@ -25,7 +32,7 @@ const Icons = {
   Moon: LuMoon,
   Laptop: LiaLaptopSolid,
   ChevronDown: BiChevronDown,
-  Bell: AiOutlineBell,
+  Bell: BsBell,
   FolderAdd: TbFolderPlus,
   Search: GoSearch,
   Menu: FiMenu,
@@ -37,7 +44,13 @@ const Icons = {
   GithubIcon,
   BookOutline: BsJournalBookmarkFill,
   CreateOutline: MdOutlineCreate,
-  MeterOutline: BsSpeedometer2
+  MeterOutline: BsSpeedometer2,
+  Calendar: BsCalendarDate,
+  Clipboard: BsClipboardCheck,
+  Data: BsDatabaseGear,
+  Boxes: BsBoxes,
+  Gear: BsGear,
+  Sign: BsSignpost2,
 };
 
 export default Icons;
