@@ -14,7 +14,9 @@ import { SignInProviders } from "@/types/auth";
 import ProvidersSignIn from "@/components/ProvidersSignIn";
 
 const Register = () => {
-  const [chosenProvider, setChosenProvider] = useState<SignInProviders | null>(null);
+  const [chosenProvider, setChosenProvider] = useState<SignInProviders | null>(
+    null
+  );
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const {
@@ -25,33 +27,32 @@ const Register = () => {
   } = useForm<UserRegisterData>({
     resolver: zodResolver(userRegisterSchema),
   });
-  
+
   const handleUserRegister: SubmitHandler<UserRegisterData> = async (
     data: UserRegisterData
   ) => {
-
     try {
-        if (!isValid) {
-          trigger();
-          throw new Error("Invalid form data, try again.");
-        }
+      if (!isValid) {
+        trigger();
+        throw new Error("Invalid form data, try again.");
+      }
 
-        const rawPostResponse = await fetch("/api/auth/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
+      const rawPostResponse = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-        const postResponse = await rawPostResponse.json();
-        const isError = postResponse.hasOwnProperty("error");
+      const postResponse = await rawPostResponse.json();
+      const isError = postResponse.hasOwnProperty("error");
 
-        toast({
-          title: isError ? "Error" : "Success",
-          message: isError ? postResponse?.error : postResponse?.message,
-          type: isError ? "error" : "success",
-        });
+      toast({
+        title: isError ? "Error" : "Success",
+        message: isError ? postResponse?.error : postResponse?.message,
+        type: isError ? "error" : "success",
+      });
     } catch (error: any) {
       if (error.hasOwnProperty("message"))
         toast({
@@ -59,7 +60,7 @@ const Register = () => {
           message: error.message,
           type: "error",
         });
-    } 
+    }
   };
 
   return (
@@ -211,7 +212,12 @@ const Register = () => {
                   .
                 </p>
               </div>
-              <ProvidersSignIn chosenProvider={chosenProvider} setChosenProvider={setChosenProvider} isLoading={isLoading} setIsLoading={setIsLoading} />
+              <ProvidersSignIn
+                chosenProvider={chosenProvider}
+                setChosenProvider={setChosenProvider}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+              />
             </form>
           </div>
         </main>

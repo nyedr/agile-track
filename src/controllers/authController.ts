@@ -44,7 +44,7 @@ const handleAuth = async (
 
   const isPasswordMatch = await bcrypt.compare(
     credentials.password,
-    user.password
+    user.password!
   );
 
   if (!isPasswordMatch) throw new Error("Incorret password, try again.");
