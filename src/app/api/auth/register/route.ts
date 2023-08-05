@@ -1,12 +1,11 @@
-import { NextApiRequest } from "next";
-import { userRegisterSchema, UserRegisterData } from "@/types/forms";
+import { userRegisterSchema } from "@/types/forms";
 import { prisma } from "@/lib/prismadb";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 
-export const POST = async (req: NextApiRequest) => {
+export const POST = async (req: Request) => {
   const parsedInput = await userRegisterSchema.safeParseAsync(
-    req.body as UserRegisterData
+    req.body
   );
 
   if (!parsedInput?.success) {

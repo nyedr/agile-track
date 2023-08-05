@@ -2,7 +2,7 @@
 
 import { UserLoginData, userLoginSchema } from "@/types/forms";
 import { toast } from "@/ui/toast";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignInProviders } from "@/types/auth";
 import ProvidersSignIn from "@/components/ProvidersSignIn";
@@ -52,7 +52,7 @@ const Login = () => {
             type: "error",
           });
       } finally {
-        setIsloading(false);
+        setIsLoading(false);
       }
 
       const session = await getServerSession();
