@@ -61,7 +61,7 @@ const Sidebar = ({ projectName }: { projectName: string }) => {
           </div>
           <div className="mt-5 flex flex-grow flex-col px-4">
             <nav className="flex-1 space-y-1 bg-gray-50 dark:bg-gray-700">
-              <p className="sidebarSectionTitle">Planning</p>
+              <p className={sidebarSectionTitle}>Planning</p>
               <ul>
                 <li>
                   <SidebarItem
@@ -78,7 +78,7 @@ const Sidebar = ({ projectName }: { projectName: string }) => {
                   />
                 </li>
               </ul>
-              <p className="sidebarSectionTitle">Project</p>
+              <p className={sidebarSectionTitle}>Project</p>
               <ul>
                 <li>
                   <SidebarItem
@@ -104,7 +104,7 @@ const Sidebar = ({ projectName }: { projectName: string }) => {
                 </li>
               </ul>
 
-              <p className="sidebarSectionTitle">Customization</p>
+              <p className={sidebarSectionTitle}>Customization</p>
               <ul>
                 <li>
                   <SidebarItem

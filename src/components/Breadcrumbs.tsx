@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter } from "next/router";
-import Image from "next/image";
 import Link from "next/link";
 
 const Crumb = ({ location, href }: { location: string; href: string }) => {

@@ -5,6 +5,6 @@ export interface DecodedData {
 
 export enum SignInProviders {
   GOOGLE = "google",
-  GITHUB = "github", 
-  CREDENTIALS = "credentials"
+  GITHUB = "github",
+  CREDENTIALS = "credentials",
 }

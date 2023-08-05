@@ -42,7 +42,8 @@ export const userRegisterSchema = z
 export type UserRegisterData = z.infer<typeof userRegisterSchema>;
 
 export const userLoginSchema = z.object({
-  email: z.string()
+  email: z
+    .string()
     .email({ message: "Invalid email address" })
     .min(3, {
       message: "Email must be at least 3 characters.",
@@ -50,9 +51,10 @@ export const userLoginSchema = z.object({
     .max(255, {
       message: "Email must be at most 255 characters.",
     }),
-    password: z.string()
-      .min(8, { message: "Password must be at least 8 characters." })
-      .max(32, { message: "Password must be at most 32 characters." }),
-})
+  password: z
+    .string()
+    .min(8, { message: "Password must be at least 8 characters." })
+    .max(32, { message: "Password must be at most 32 characters." }),
+});
 
 export type UserLoginData = z.infer<typeof userLoginSchema>;

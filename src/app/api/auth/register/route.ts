@@ -4,9 +4,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 
 export const POST = async (req: Request) => {
-  const parsedInput = await userRegisterSchema.safeParseAsync(
-    req.body
-  );
+  const parsedInput = await userRegisterSchema.safeParseAsync(req.body);
 
   if (!parsedInput?.success) {
     return NextResponse.json(

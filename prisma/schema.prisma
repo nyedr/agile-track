@@ -18,12 +18,6 @@ enum Role {
   DEVELOPER
 }
 
-enum Providers {
-  CRENDETIAL
-  GOOGLE
-  GITHUB
-}
-
 model User {
   id                   String          @id @default(auto()) @map("_id") @db.ObjectId
   username             String          @unique
@@ -36,7 +30,6 @@ model User {
   notifications        Notification[]
   createdAt            DateTime        @default(now())
   updatedAt            DateTime        @updatedAt
-  provider             Providers
   assignedIssues       Issue[]         @relation("AssigneeToIssue")
   managedProjects      Project[]       @relation("ProjectManagerToProject")
   notificationsAllowed Boolean         @default(true)
