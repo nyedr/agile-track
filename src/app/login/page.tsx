@@ -1,6 +1,6 @@
 "use client";
 
-import { UserLoginData, userLoginSchema } from "@/types/forms";
+import { UserLoginData, userLoginSchema } from "@/lib/validations/auth";
 import { toast } from "@/ui/toast";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -58,6 +58,7 @@ const Login = () => {
     }
 
     const session = await getServerSession();
+
     if (session) {
       toast({
         title: "Success",
@@ -75,6 +76,7 @@ const Login = () => {
             alt="Pattern"
             src="https://images.unsplash.com/photo-1617195737496-bc30194e3a19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
             className="absolute inset-0 h-full w-full object-cover"
+            fill={true}
           />
         </aside>
 

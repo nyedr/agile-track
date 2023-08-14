@@ -1,5 +1,5 @@
 "use client";
-import { useState, ReactNode } from "react";
+import { useState, ReactNode, useEffect } from "react";
 import type { IconType } from "react-icons";
 
 interface DropdownItemProps {
@@ -19,8 +19,8 @@ export const DropdownItem = ({
   >
     <Icon className="md hydrated h-6 w-6 text-blue-500" />
     <div className="ml-4">
-      <p className="text-base font-medium text-black">{title}</p>
-      <p className="mt-1 text-sm text-gray-500">{description}</p>
+      <p className="text-sm font-medium text-black">{title}</p>
+      <p className="mt-1 text-sm text-gray-600">{description}</p>
     </div>
   </a>
 );
@@ -34,8 +34,11 @@ export const Dropdown = ({ label, children }: DropdownProps) => {
   const [open, setOpen] = useState<boolean>(false);
 
   return (
-    <div onClick={(prev) => setOpen(!prev)} className="relative">
-      <button className="focus:shadow-outline mt-2 flex w-full flex-row items-center px-4 py-2 text-left text-sm text-gray-500 duration-300 hover:text-blue-500 focus:outline-none dark:text-gray-200 md:mt-0 md:inline md:w-auto">
+    <div className="relative">
+      <button
+        onClick={() => setOpen((prev) => !prev)}
+        className="focus:shadow-outline z-50 flex w-full flex-row items-center px-2 py-2 text-left text-sm text-gray-700 duration-300 hover:text-blue-500 focus:outline-none dark:text-gray-200 md:mt-0 md:inline md:w-auto"
+      >
         <span>{label}</span>
         <svg
           fill="currentColor"
@@ -52,7 +55,7 @@ export const Dropdown = ({ label, children }: DropdownProps) => {
         </svg>
       </button>
       <div
-        className={`-trangray-x-1/2 absolute left-1/2 z-10 mt-3 w-screen max-w-xs transform px-2 sm:px-0 ${
+        className={`-trangray-x-1/2 absolute -left-full z-10 mt-3 w-screen max-w-xs transform px-2 sm:px-0 ${
           open ? "" : "hidden"
         }`}
       >

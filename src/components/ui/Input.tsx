@@ -5,7 +5,7 @@ import { VariantProps, cva } from "class-variance-authority";
 import { InputHTMLAttributes, forwardRef, useState } from "react";
 import Icons from "@/components/Icons";
 
-const inputVariants = cva(
+export const inputVariants = cva(
   "block text-slate-900 placeholder-slate-400 invalid:border-pink-500 invalid:text-pink-600 focus:outline-none focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:bg-slate-50 disabled:border-slate-200 disabled:text-slate-500 disabled:shadow-none sm:leading-6",
   {
     variants: {
@@ -88,12 +88,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
               >
                 <span className="sr-only">Hide</span>
                 {isPrivate ? (
-                  <Icons.EyeInvisible
+                  <Icons.EyeVisible
                     onClick={() => setIsPrivate((prev) => !prev)}
                     className="h-5 w-5"
                   />
                 ) : (
-                  <Icons.EyeVisible
+                  <Icons.EyeInvisible
                     onClick={() => setIsPrivate((prev) => !prev)}
                     className="h-5 w-5"
                   />

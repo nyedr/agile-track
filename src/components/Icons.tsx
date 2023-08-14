@@ -24,6 +24,8 @@ import { FiMenu } from "react-icons/fi";
 import { MdOutlineCreate } from "react-icons/md";
 import GoogleIcon from "@/public/GoogleIcon";
 import GithubIcon from "@/public/GithubIcon";
+import { IoCloseSharp } from "react-icons/io5";
+import { CgMenuRightAlt } from "react-icons/cg";
 
 const Icons = {
   ChevronLeft: BsChevronLeft,
@@ -51,6 +53,7 @@ const Icons = {
   Boxes: BsBoxes,
   Gear: BsGear,
   Sign: BsSignpost2,
+  Close: IoCloseSharp,
 };
 
 export default Icons;

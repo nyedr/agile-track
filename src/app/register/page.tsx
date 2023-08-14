@@ -6,7 +6,7 @@ import LinkButton from "@/components/ui/LinkButton";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { userRegisterSchema, UserRegisterData } from "@/types/forms";
+import { userRegisterSchema, UserRegisterData } from "@/lib/validations/auth";
 import { toast } from "@/ui/toast";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -188,7 +188,7 @@ const Register = () => {
                 </p>
               </div>
 
-              <div className="mb-6 sm:flex sm:gap-4">
+              <div className="mb-6 sm:flex sm:gap-4 items-center">
                 <Button
                   variant="default"
                   size="lg"

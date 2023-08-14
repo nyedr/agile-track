@@ -18,6 +18,22 @@ enum Role {
   DEVELOPER
 }
 
+model Company {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String    @unique
+  projects    Project[]
+  address     String?
+  phone       String?
+  email       String    @unique
+  website     String?
+  description String?
+  isPublic    Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  users       User[]
+}
+
 model User {
   id                   String          @id @default(auto()) @map("_id") @db.ObjectId
   username             String          @unique
@@ -28,6 +44,8 @@ model User {
   issues               Issue[]
   comments             Comment[]
   notifications        Notification[]
+  company              Company         @relation(fields: [companyId], references: [id])
+  companyId            String          @db.ObjectId
   createdAt            DateTime        @default(now())
   updatedAt            DateTime        @updatedAt
   assignedIssues       Issue[]         @relation("AssigneeToIssue")
@@ -39,7 +57,7 @@ model User {
 enum Statuses {
   OPEN
   IN_PROGRESS
-  DONE
+  COMPLETED
   CLOSED
 }
 
@@ -49,9 +67,12 @@ model Project {
   description      String
   status           Statuses
   startDate        DateTime
-  endDate          DateTime
+  endDate          DateTime?
   projectMembers   ProjectMember[]
   issues           Issue[]
+  notifications    Notification[]
+  company          Company         @relation(fields: [companyId], references: [id])
+  companyId        String          @db.ObjectId
   projectManager   User            @relation("ProjectManagerToProject", fields: [projectManagerId], references: [id])
   projectManagerId String          @db.ObjectId
   createdAt        DateTime        @default(now())
@@ -133,4 +154,6 @@ model Notification {
   link      String
   createdAt DateTime         @default(now())
   updatedAt DateTime         @updatedAt
+  Project   Project?         @relation(fields: [projectId], references: [id])
+  projectId String?          @db.ObjectId
 }

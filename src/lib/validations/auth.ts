@@ -15,23 +15,24 @@ export const userRegisterSchema = z
       }),
     password: z
       .string()
-      // .regex(/^(?=.*?[A-Z]).*$/, {
-      //   message: "Password must contain at least one uppercase letter.",
-      // })
-      // .regex(/^(?=.*?[a-z]).*$/, {
-      //   message: "Password must contain at least one lowercase letter.",
-      // })
-      // .regex(/^(?=.*?[0-9]).*$/, {
-      //   message: "Password must contain at least one number.",
-      // })
-      // .regex(/^(?=.*?[#?!@$ %^&*-]).*$/, {
-      //   message: "Password must contain at least one special character.",
-      // })
-      .min(8, { message: "Password must be at least 8 characters." })
-      .max(32, { message: "Password must be at most 32 characters." }),
+      .min(8, {
+        message: "Password must be at least 8 characters long",
+      })
+      .max(100)
+      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/, {
+        message:
+          "Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character",
+      }),
     passwordConfirmation: z
       .string()
-      .min(8, { message: "Password must be at least 8 characters long" }),
+      .min(8, {
+        message: "Password must be at least 8 characters long",
+      })
+      .max(100)
+      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/, {
+        message:
+          "Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character",
+      }),
     notificationsAllowed: z.boolean(),
   })
   .refine((data) => data.password === data.passwordConfirmation, {

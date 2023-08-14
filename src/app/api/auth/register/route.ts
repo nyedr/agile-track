@@ -1,4 +1,4 @@
-import { userRegisterSchema } from "@/types/forms";
+import { userRegisterSchema } from "@/lib/validations/auth";
 import { prisma } from "@/lib/prismadb";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
@@ -42,6 +42,7 @@ export const POST = async (req: Request) => {
       username: `${firstName} ${lastName}`,
       email,
       password: hashedPassword,
+      companyId: "1",
     },
   });
 
