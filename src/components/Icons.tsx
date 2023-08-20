@@ -20,12 +20,11 @@ import { BiChevronDown } from "react-icons/bi";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { TbFolderPlus } from "react-icons/tb";
 import { GoSearch } from "react-icons/go";
-import { FiMenu } from "react-icons/fi";
+import { FiMenu, FiExternalLink } from "react-icons/fi";
 import { MdOutlineCreate } from "react-icons/md";
 import GoogleIcon from "@/public/GoogleIcon";
 import GithubIcon from "@/public/GithubIcon";
 import { IoCloseSharp } from "react-icons/io5";
-import { CgMenuRightAlt } from "react-icons/cg";
 
 const Icons = {
   ChevronLeft: BsChevronLeft,
@@ -54,6 +53,7 @@ const Icons = {
   Gear: BsGear,
   Sign: BsSignpost2,
   Close: IoCloseSharp,
+  ExternalLink: FiExternalLink
 };
 
 export default Icons;

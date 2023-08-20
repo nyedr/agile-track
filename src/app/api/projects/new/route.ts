@@ -19,13 +19,7 @@ export default async function POST(req: NextApiRequest, res: NextApiResponse) {
 
     const newProject = await prisma.project.create({
       data: {
-        name: validatedBody.name,
-        description: validatedBody.description,
-        status: validatedBody.status,
-        projectManagerId: validatedBody.projectManagerId,
-        startDate: validatedBody.startDate,
-        endDate: validatedBody.endDate,
-        companyId: "",
+        ...validatedBody,
       },
     });
 

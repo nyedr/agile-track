@@ -17,6 +17,7 @@ export const newProjectSchema = z.object({
   projectManagerId: z.string().uuid({ message: "Invalid project manager" }),
   startDate: z.date().default(() => new Date()),
   endDate: z.date().nullable(),
+  companyId: z.string().uuid({ message: "Invalid company" }),
 });
 
 export type NewProject = z.infer<typeof newProjectSchema>;

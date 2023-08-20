@@ -14,7 +14,17 @@ module.exports = {
         "2xl": "1360px",
       },
     },
-    extend: {},
+    extend: {
+      colors: {
+        "primary-color": "rgb(var(--primary-color))",
+        "primary-color-accent": "rgb(var(--primary-color-accent))",
+        "background": "rgb(var(--background))",
+        "secondary-background": "rgb(var(--secondary-background))",
+        "primary-text": "rgb(var(--primary-text))",
+        "secondary-text": "rgb(var(--secondary-text))",
+        "light-shade": "rgb(var(--light-shade))",
+      }
+    },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 };

@@ -18,6 +18,13 @@ enum Role {
   DEVELOPER
 }
 
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
 model Company {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
   name        String    @unique
@@ -91,13 +98,21 @@ model ProjectMember {
   @@unique([userId, projectId])
 }
 
+enum IssueType {
+  BUG
+  TASK
+  STORY
+  EPIC
+  FEATURE
+}
+
 model Issue {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   description String
   status      Statuses
-  priority    String
-  type        String
+  priority    Priority
+  type        IssueType
   projectId   String    @db.ObjectId
   project     Project   @relation(fields: [projectId], references: [id])
   assigneeId  String    @db.ObjectId

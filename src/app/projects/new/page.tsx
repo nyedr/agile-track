@@ -8,6 +8,7 @@ import { Statuses, User } from "@prisma/client";
 import Input, { inputVariants } from "@/components/ui/Input";
 import { useState } from "react";
 import Button from "@/components/ui/Button";
+import { catchErrors } from "@/lib/utils";
 
 const CreateProject = () => {
   const [projectManagers, setProjectManagers] = useState<User[]>([]);
@@ -37,13 +38,7 @@ const CreateProject = () => {
         title: "Success",
       });
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        toast({
-          message: error.message,
-          type: "error",
-          title: "Error",
-        });
-      }
+      catchErrors(error);
     }
   };
 

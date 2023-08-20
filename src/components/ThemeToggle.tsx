@@ -2,38 +2,51 @@
 
 import * as React from "react";
 import { useTheme } from "next-themes";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/DropdownMenu";
 import Button from "@/ui/Button";
 import Icons from "@/components/Icons";
+import {
+  DropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+} from "@/components/ui/DropdownMenu";
 
 export default function ThemeToggle() {
   const { setTheme } = useTheme();
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="header" size="header">
-          <Icons.Sun className="rotate-0 scale-100 transition-all hover:text-slate-900 dark:-rotate-90 dark:scale-0 dark:text-slate-400 dark:hover:text-slate-100 w-4 h-4" />
-          <Icons.Moon className="absolute rotate-90 scale-0 transition-all hover:text-slate-900 dark:rotate-0 dark:scale-100 dark:text-slate-400 dark:hover:text-slate-100 w-4 h-4" />
+      <DropdownMenuTrigger>
+        <Button
+          variant="none"
+          size="none"
+          className="rounded-md outline-none p-2 hover:bg-light-shade text-secondary-text hover:text-primary-text"
+        >
+          <Icons.Sun className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 h-6 w-6" />
+          <Icons.Moon className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 h-6 w-6" />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" forceMount>
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          <Icons.Sun className="mr-2 h-4 w-4" />
+      <DropdownMenuContent>
+        <DropdownMenuItem
+          className="flex items-center gap-2"
+          onClick={() => setTheme("light")}
+        >
+          <Icons.Sun className="h-4 w-4" />
           <span>Light</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          <Icons.Moon className="mr-2 h-4 w-4" />
+        <DropdownMenuItem
+          className="flex items-center gap-2"
+          onClick={() => setTheme("dark")}
+        >
+          <Icons.Moon className="h-4 w-4" />
           <span>Dark</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          <Icons.Laptop className="mr-2 h-4 w-4" />
+        <DropdownMenuItem
+          className="flex items-center gap-2"
+          onClick={() => setTheme("system")}
+        >
+          <Icons.Laptop className="h-4 w-4" />
           <span>System</span>
         </DropdownMenuItem>
       </DropdownMenuContent>

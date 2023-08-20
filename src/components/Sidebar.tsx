@@ -1,6 +1,5 @@
 import LinkButton from "@/ui/LinkButton";
 import type { IconType } from "react-icons";
-import Image from "next/image";
 import Icons from "@/components/Icons";
 
 interface SidebarItemProps {
@@ -17,7 +16,7 @@ const SidebarItem = ({ href, text, Icon, notifications }: SidebarItemProps) => {
   return (
     <LinkButton variant="sidebarItem" href={href}>
       <Icon className="h-4 w-4" />
-      <span className="ml-4"> {text} </span>
+      <span className="ml-4 text-sm"> {text} </span>
       {notifications && (
         <span
           className={`ml-auto inline-flex items-center rounded-full bg-${
@@ -35,32 +34,14 @@ const SidebarItem = ({ href, text, Icon, notifications }: SidebarItemProps) => {
 
 const Sidebar = ({ projectName }: { projectName: string }) => {
   const sidebarSectionTitle =
-    "px-4 pt-4 text-xs font-semibold uppercase text-gray-400 dark:text-gray-100";
+    "px-4 pt-4 text-xs font-semibold uppercase text-primary-text";
 
   return (
     <div className="hidden md:flex md:flex-shrink-0">
       <div className="flex w-64 flex-col">
-        <div className="flex flex-grow flex-col overflow-y-auto border-r bg-gray-50 pt-5 dark:bg-gray-700">
-          <div className="flex flex-shrink-0 flex-col ps-7">
-            <a
-              className="text-xl font-semibold tracking-tighter text-gray-900 focus:outline-none focus:ring dark:text-gray-50"
-              href="/"
-            >
-              <span className="inline-flex items-center gap-3">
-                <Image
-                  src="projectIcon.svg"
-                  alt="Project"
-                  className="mx-auto h-5 w-5"
-                />
-                {projectName || "Project Name"}
-              </span>
-            </a>
-            <button className="focus:shadow-outline hidden rounded-lg focus:outline-none">
-              <Image src="buttonIcon.svg" alt="Button" className="h-6 w-6" />
-            </button>
-          </div>
-          <div className="mt-5 flex flex-grow flex-col px-4">
-            <nav className="flex-1 space-y-1 bg-gray-50 dark:bg-gray-700">
+        <div className="flex flex-grow flex-col overflow-y-auto border-r bg-secondary-background">
+          <div className="flex flex-grow flex-col px-4">
+            <nav className="flex-1 space-y-1 bg-secondary-background">
               <p className={sidebarSectionTitle}>Planning</p>
               <ul>
                 <li>

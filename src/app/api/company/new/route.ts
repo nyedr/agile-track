@@ -1,19 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@/lib/prismadb";
 import { Company, companySchema } from "@/lib/validations/company";
-import { z } from "zod";
+import { catchErrors } from "@/lib/utils";
 
 export default async function POST(req: NextApiRequest, res: NextApiResponse) {
   try {
     companySchema.parse(req.body);
   } catch (error: unknown) {
-    if (error instanceof z.ZodError) {
-      return res.status(400).json({ error: error.errors });
-    }
-
-    if (error instanceof Error) {
-      return res.status(500).json({ error: error.message });
-    }
+    catchErrors(error);
   }
 
   const { name, address, phone, email, website, description, isPublic } =

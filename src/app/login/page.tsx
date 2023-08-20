@@ -69,12 +69,12 @@ const Login = () => {
   };
 
   return (
-    <section className="bg-white dark:bg-gray-900 w-full">
+    <section className="bg-background w-full">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
         <aside className="relative block h-16 lg:col-span-5 lg:h-full xl:col-span-6">
           <Image
             alt="Pattern"
-            src="https://images.unsplash.com/photo-1617195737496-bc30194e3a19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+            src="https://i.postimg.cc/tTXVKGPB/gas-Station-Panel.webp"
             className="absolute inset-0 h-full w-full object-cover"
             fill={true}
           />
@@ -82,7 +82,7 @@ const Login = () => {
 
         <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
           <div className="max-w-xl lg:max-w-3xl">
-            <Link className="block text-blue-600" href="/">
+            <Link className="block text-primary-color-accent" href="/">
               <span className="sr-only">Home</span>
               <Image
                 alt="Logo"
@@ -92,7 +92,7 @@ const Login = () => {
               />
             </Link>
 
-            <h1 className="mt-6 text-2xl font-bold text-gray-900 dark:text-white sm:text-2xl md:text-3xl">
+            <h1 className="mt-6 text-2xl font-bold text-primary-text dark:text-primary-text-dark sm:text-2xl md:text-3xl">
               Welcome back to AgileTrack
             </h1>
 
@@ -124,7 +124,7 @@ const Login = () => {
                   size="lg"
                   onClick={() => setChosenProvider(SignInProviders.CREDENTIALS)}
                   type="submit"
-                  className="shrink-0 border transition hover:bg-transparent hover:text-blue-600 focus:outline-none active:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white"
+                  className="shrink-0 border transition hover:bg-transparent hover:text-primary-color-accent focus:outline-none active:text-primary-color dark:hover:text-primary-text-dark"
                 >
                   Log in
                 </Button>
@@ -135,7 +135,7 @@ const Login = () => {
                     href="/register"
                     size="sm"
                     variant={"underline"}
-                    className="text-gray-700 underline dark:text-gray-200 hover:text-gray-600 duration-300 dark:hover:text-gray-300"
+                    className="text-secondary-text underline dark:text-secondary-text-dark hover:text-gray-600 duration-300 dark:hover:text-slate-300"
                   >
                     Register
                   </LinkButton>

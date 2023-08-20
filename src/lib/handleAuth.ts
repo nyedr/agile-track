@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prismadb";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
+import { catchErrors } from "@/lib/utils";
 
 const handleAuth = async (
   credentials: Record<"email" | "password", string> | undefined
@@ -27,9 +28,7 @@ const handleAuth = async (
     emailSchema.parse(credentials.email);
     passwordSchema.parse(credentials.password);
   } catch (error: unknown) {
-    if (error instanceof z.ZodError) {
-      throw new Error("Invalid fields: " + error.message);
-    }
+    catchErrors(error);
   }
 
   const user = await prisma.user.findUnique({

@@ -64,13 +64,13 @@ const Register = () => {
   };
 
   return (
-    <section className="bg-white dark:bg-gray-900 w-full">
+    <section className="bg-background w-full">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
         <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6">
           <div className="h-full w-full relative">
             <Image
               alt="Pattern"
-              src="https://i.postimg.cc/gJW9DG8h/blue-Background-Pattern.webp"
+              src="https://i.postimg.cc/90SQMd74/blue-Chekered-Pattern.webp"
               className="absolute inset-0 object-cover"
               fill={true}
               loading="lazy"
@@ -80,7 +80,7 @@ const Register = () => {
 
         <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
           <div className="max-w-xl lg:max-w-3xl">
-            <Link className="block text-blue-600" href="/">
+            <Link className="block text-primary-color-accent" href="/">
               <span className="sr-only">Home</span>
               <Image
                 alt="Logo"
@@ -90,7 +90,7 @@ const Register = () => {
               />
             </Link>
 
-            <h1 className="mt-6 text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl md:text-4xl">
+            <h1 className="mt-6 text-2xl font-bold text-primary-text sm:text-3xl md:text-4xl">
               Welcome to AgileTrack
             </h1>
 
@@ -150,11 +150,11 @@ const Register = () => {
                   <input
                     type="checkbox"
                     id="marketing_accept"
-                    className="h-5 w-5 cursor-pointer rounded-md border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:focus:ring-offset-gray-900"
+                    className="h-5 w-5 cursor-pointer rounded-md border-gray-200 bg-background shadow-sm dark:border-gray-700 dark:bg-secondary-background dark:focus:ring-offset-gray-900"
                     {...register("notificationsAllowed")}
                   />
 
-                  <span className="text-sm text-gray-700 dark:text-gray-200">
+                  <span className="text-sm text-secondary-text">
                     {" "}
                     I don{"'"}t want to receive emails about events, issue and
                     project updates, and company announcements.{" "}
@@ -169,7 +169,7 @@ const Register = () => {
                     href="/terms"
                     variant="color"
                     size="sm"
-                    className="text-gray-700 underline dark:text-gray-200"
+                    className="text-secondary-text underline"
                   >
                     {" "}
                     terms and conditions{" "}
@@ -179,7 +179,7 @@ const Register = () => {
                     variant="color"
                     href="/privacy"
                     size="sm"
-                    className="text-gray-700 underline dark:text-gray-200"
+                    className="text-secondary-text underline"
                   >
                     {" "}
                     privacy policy{" "}
@@ -190,11 +190,10 @@ const Register = () => {
 
               <div className="mb-6 sm:flex sm:gap-4 items-center">
                 <Button
-                  variant="default"
                   size="lg"
                   onClick={() => setChosenProvider(SignInProviders.CREDENTIALS)}
                   type="submit"
-                  className="shrink-0 border transition hover:bg-transparent hover:text-blue-600 focus:outline-none active:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white"
+                  className="bg-primary-color border border-primary-color text-white hover:bg-transparent hover:border-primary-color hover:text-primary-color-accent shrink-0 transition focus:outline-none"
                 >
                   Create an account
                 </Button>
@@ -205,7 +204,7 @@ const Register = () => {
                     href="/login"
                     size="sm"
                     variant={"underline"}
-                    className="text-gray-700 underline dark:text-gray-200 hover:text-gray-600 duration-300 dark:hover:text-gray-300"
+                    className="text-secondary-text underline hover:text-gray-600 duration-300 dark:hover:text-gray-300"
                   >
                     Log in
                   </LinkButton>
