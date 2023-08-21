@@ -15,9 +15,10 @@ import {
   BsBoxes,
   BsGear,
   BsSignpost2,
+  BsChevronExpand,
 } from "react-icons/bs";
 import { BiChevronDown } from "react-icons/bi";
-import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import { AiFillEyeInvisible, AiFillEye, AiFillHome } from "react-icons/ai";
 import { TbFolderPlus } from "react-icons/tb";
 import { GoSearch } from "react-icons/go";
 import { FiMenu, FiExternalLink } from "react-icons/fi";
@@ -53,7 +54,9 @@ const Icons = {
   Gear: BsGear,
   Sign: BsSignpost2,
   Close: IoCloseSharp,
-  ExternalLink: FiExternalLink
+  ExternalLink: FiExternalLink,
+  Home: AiFillHome,
+  ChevronUpDownIcon: BsChevronExpand,
 };
 
 export default Icons;

@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html className={inter.className} lang="en">
-      <body className="bg-secondary-background dark:bg-background antialiased min-h-screen flex justify-center overflow-x-hidden">
+      <body className="flex justify-center min-h-screen overflow-x-hidden antialiased bg-secondary-background dark:bg-background">
         <Providers>
           {children}
           <Toaster position="bottom-left" />

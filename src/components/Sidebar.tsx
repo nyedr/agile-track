@@ -15,7 +15,7 @@ interface SidebarItemProps {
 const SidebarItem = ({ href, text, Icon, notifications }: SidebarItemProps) => {
   return (
     <LinkButton variant="sidebarItem" href={href}>
-      <Icon className="h-4 w-4" />
+      <Icon className="w-4 h-4" />
       <span className="ml-4 text-sm"> {text} </span>
       {notifications && (
         <span
@@ -38,9 +38,9 @@ const Sidebar = ({ projectName }: { projectName: string }) => {
 
   return (
     <div className="hidden md:flex md:flex-shrink-0">
-      <div className="flex w-64 flex-col">
-        <div className="flex flex-grow flex-col overflow-y-auto border-r bg-secondary-background">
-          <div className="flex flex-grow flex-col px-4">
+      <div className="flex flex-col w-64">
+        <div className="flex flex-col flex-grow overflow-y-auto border-r bg-secondary-background">
+          <div className="flex flex-col flex-grow px-4">
             <nav className="flex-1 space-y-1 bg-secondary-background">
               <p className={sidebarSectionTitle}>Planning</p>
               <ul>

@@ -94,7 +94,7 @@ const Register = () => {
               Welcome to AgileTrack
             </h1>
 
-            <p className="mt-4 leading-relaxed text-gray-500 dark:text-gray-400">
+            <p className="mt-4 leading-relaxed text-secondary-text">
               Join for an organized interface for project management, task
               tracking, and team collaboration.
             </p>
@@ -163,7 +163,7 @@ const Register = () => {
               </div>
 
               <div className="mb-4">
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <p className="text-sm text-secondary-text">
                   By creating an account, you agree to our
                   <LinkButton
                     href="/terms"
@@ -198,13 +198,13 @@ const Register = () => {
                   Create an account
                 </Button>
 
-                <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
+                <p className="mt-4 text-sm text-secondary-text sm:mt-0">
                   Already have an account?
                   <LinkButton
                     href="/login"
                     size="sm"
-                    variant={"underline"}
-                    className="text-secondary-text underline hover:text-gray-600 duration-300 dark:hover:text-gray-300"
+                    variant="color"
+                    className="text-secondary-text underline duration-300 ps-1"
                   >
                     Log in
                   </LinkButton>

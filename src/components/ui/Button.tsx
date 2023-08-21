@@ -8,7 +8,7 @@ export const buttonVariants = cva("inline-flex duration-300 outline-none", {
   variants: {
     variant: {
       default:
-        "items-center font-medium justify-center border-primary-color-accent bg-primary-color-accent focus:ring-2 text-white shadow-sm hover:bg-blue-500 rounded-md",
+        "items-center bg-primary-color font-medium justify-center focus:ring-4 focus:ring-primary-color text-white shadow-sm hover:bg-primary-color-accent rounded-md",
       destructive:
         "items-center font-medium justify-center text-white bg-red-600 hover:bg-red-500 rounded-md",
       outline:
@@ -18,9 +18,11 @@ export const buttonVariants = cva("inline-flex duration-300 outline-none", {
       ghost:
         "items-center font-medium justify-centerbg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 dark:text-slate-400 data-[state=open]:bg-transparent dark:data-[state=open]:bg-transparent",
       provider:
-        "font-medium flex text-primary-text items-center justify-center rounded-lg border dark:border-slate-400 py-2.5 duration-150 hover:bg-gray-50 dark:hover:bg-gray-700 active:bg-gray-100 dark:bg-gray-800",
+        "font-medium flex text-primary-text items-center justify-center rounded-lg border dark:border-slate-400 py-2.5 duration-150 bg-background hover:bg-light-shade",
       header:
         "rounded-lg text-gray-600 dark:text-primary-text-dark block shrink-0 bg-white shadow-sm dark:bg-slate-700 dark:text-slate-50 hover:bg-gray-50 dark:hover:bg-slate-700",
+      select:
+        "text-primary-color font-semibold hover:bg-light-shade focus:bg-background focus:ring-2 focus:ring-secondary-background duration-300 rounded-md",
       none: "",
     },
     size: {
@@ -60,7 +62,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {isLoading ? (
-          <BiLoaderAlt className="mr-2 h-4 w-4 animate-spin" />
+          <BiLoaderAlt className="w-4 h-4 mr-2 animate-spin" />
         ) : null}
         {children}
       </button>

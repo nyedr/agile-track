@@ -4,7 +4,7 @@ import { FC } from "react";
 
 const NotFound: FC = ({}) => {
   return (
-    <div className="grid min-h-screen place-content-center bg-background px-4">
+    <div className="grid min-h-screen px-4 place-content-center bg-background">
       <div className="flex flex-col items-center gap-2 text-center">
         <Clumsy />
         <h3 className="mt-2 text-2xl font-semibold text-primary-color-accent">
@@ -27,7 +27,7 @@ const NotFound: FC = ({}) => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="h-5 w-5"
+            className="w-5 h-5"
           >
             <path
               fillRule="evenodd"

@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prismadb";
 import { Company, companySchema } from "@/lib/validations/company";
 import { catchErrors } from "@/lib/utils";
 
-export default async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
   try {
     companySchema.parse(req.body);
   } catch (error: unknown) {

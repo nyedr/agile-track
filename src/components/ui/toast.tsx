@@ -36,7 +36,7 @@ Toast.Icon = function ToastIcon({ name, className, ...props }: ToastIconProps) {
   }
 
   return (
-    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-slate-100">
+    <div className="flex items-center justify-center w-20 h-20 rounded-full bg-slate-100">
       <Icon className={cn("h-10 w-10", className)} {...props} />
     </div>
   );

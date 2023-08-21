@@ -129,13 +129,13 @@ const Login = () => {
                   Log in
                 </Button>
 
-                <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
+                <p className="mt-4 text-sm text-secondary-text sm:mt-0">
                   Don{"'"}t have an account?
                   <LinkButton
                     href="/register"
                     size="sm"
-                    variant={"underline"}
-                    className="text-secondary-text underline dark:text-secondary-text-dark hover:text-gray-600 duration-300 dark:hover:text-slate-300"
+                    variant={"color"}
+                    className="text-secondary-text underline hover:text-primary-text duration-300 ps-1"
                   >
                     Register
                   </LinkButton>

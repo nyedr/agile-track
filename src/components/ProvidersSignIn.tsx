@@ -47,20 +47,20 @@ const ProvidersSignIn = ({
 
   return (
     <div>
-      <div className="text-primary-text relative my-8">
-        <span className="block h-px w-full bg-gray-300"></span>
-        <p className="absolute inset-x-0 -top-2 mx-auto inline-block w-fit bg-background px-2 text-sm">
+      <div className="relative my-8 text-primary-text">
+        <span className="block w-full h-px bg-gray-300"></span>
+        <p className="absolute inset-x-0 inline-block px-2 mx-auto text-sm -top-2 w-fit bg-background">
           Or continue with
         </p>
       </div>
-      <div className="mt-3 grid w-full grid-cols-2 items-center justify-center gap-x-3">
+      <div className="grid items-center justify-center w-full grid-cols-2 mt-3 gap-x-3">
         <Button
           isLoading={chosenProvider === SignInProviders.GOOGLE && isLoading}
           onClick={() => {
             setChosenProvider(SignInProviders.GOOGLE);
             signInProvider(SignInProviders.GOOGLE);
           }}
-          className="h-12 flex items-center gap-3"
+          className="flex items-center h-12 gap-3"
           variant="provider"
           type="button"
         >
@@ -74,7 +74,7 @@ const ProvidersSignIn = ({
             signInProvider(SignInProviders.GITHUB);
           }}
           variant="provider"
-          className="h-12 flex items-center gap-3"
+          className="flex items-center h-12 gap-3"
           type="button"
         >
           <Icons.GithubIcon />

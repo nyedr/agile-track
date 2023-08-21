@@ -9,6 +9,10 @@ export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
 };
 
+export const capitalize = (string: string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+};
+
 export const catchErrors = (error: unknown, res?: NextApiResponse) => {
   if (error instanceof ZodError) {
     const errors = error.issues.map((issue) => {

@@ -1,5 +1,5 @@
 import { Notification } from "@prisma/client";
-import LinkButton from "./ui/LinkButton";
+import LinkButton from "@/ui/LinkButton";
 import Icons from "@/components/Icons";
 import { getNotificationTitle } from "@/lib/utils";
 
@@ -7,7 +7,7 @@ const AppNotification = ({ content, link, targetId, type }: Notification) => {
   return (
     <div
       role="alert"
-      className="rounded-xl border border-gray-100 bg-white p-4 shadow-xl dark:border-gray-800 dark:bg-gray-900"
+      className="p-4 bg-white border border-gray-100 shadow-xl rounded-xl dark:border-gray-800 dark:bg-gray-900"
     >
       <div className="flex items-start gap-4">
         <span className="text-green-600"></span>
@@ -21,14 +21,14 @@ const AppNotification = ({ content, link, targetId, type }: Notification) => {
             {content}
           </p>
 
-          <div className="mt-4 flex gap-2">
+          <div className="flex gap-2 mt-4">
             <LinkButton
               href={link}
-              className="inline-flex items-center gap-2 rounded-lg bg-primary-color px-4 py-2 text-white hover:bg-primary-color-accent"
+              className="inline-flex items-center gap-2 px-4 py-2 text-white rounded-lg bg-primary-color hover:bg-primary-color-accent"
             >
               <span className="text-sm"> View </span>
 
-              <Icons.ExternalLink className="h-4 w-4" />
+              <Icons.ExternalLink className="w-4 h-4" />
             </LinkButton>
           </div>
         </div>
@@ -42,7 +42,7 @@ const AppNotification = ({ content, link, targetId, type }: Notification) => {
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            className="h-6 w-6"
+            className="w-6 h-6"
           >
             <path
               stroke-linecap="round"

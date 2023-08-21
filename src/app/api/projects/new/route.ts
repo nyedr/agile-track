@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prismadb";
 import { newProjectSchema, NewProject } from "@/lib/validations/projects";
 import { z } from "zod";
 
-export default async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
   const { body } = req;
 
   try {

@@ -6,8 +6,8 @@
     :root {
         --primary-color: 59, 130, 246;
         --primary-color-accent: 37, 99, 235;
-        --background: 255, 255, 255;
-        --secondary-background: 248, 250, 252;
+        --background: 248, 250, 252;
+        --secondary-background: 241, 245, 249,;
         --primary-text: 17, 24, 39;
         --secondary-text: 55, 65, 81;
         --light-shade: 226, 232, 240;

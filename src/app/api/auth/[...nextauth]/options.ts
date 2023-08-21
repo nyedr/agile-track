@@ -1,10 +1,10 @@
-import { NextAuthOptions } from "next-auth";
+import type { NextAuthOptions } from "next-auth";
 import { prisma } from "@/lib/prismadb";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
-import handleAuth from "@/lib/handleAuth";
+import handleUserCrendentialsAuthentication from "@/lib/handleAuth";
 
 const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -27,7 +27,7 @@ const authOptions: NextAuthOptions = {
         },
         password: { label: "Password", type: "password" },
       },
-      authorize: handleAuth,
+      authorize: handleUserCrendentialsAuthentication,
     }),
   ],
   session: {

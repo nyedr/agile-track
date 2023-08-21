@@ -1,28 +1,25 @@
-import { prisma } from "@/lib/prismadb";
-
-interface GetUserOptions {
-  username?: string;
-  isMulti?: boolean;
-  orderBy?: "username" | "createdAt" | "updatedAt" | "roles";
-  orderDirection?: "asc" | "desc";
-}
-
-const getUser = async ({
-  isMulti,
-  orderBy,
-  orderDirection,
-  username,
-}: GetUserOptions) => {
-  const users = await prisma.user.findMany({
-    where: {
-      username: username ? username : undefined,
-    },
-    orderBy: {
-      [orderBy ?? "username"]: orderDirection ?? "asc",
+export const getUserById = async (userId: string) => {
+  const fetchedUser = await fetch(`/api/users/${userId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
     },
   });
 
-  return isMulti ? users : users[0];
+  const user = await fetchedUser.json();
+
+  return user;
 };
 
-export default getUser;
+export const getUserByUsername = async (username: string) => {
+  const fetchedUser = await fetch(`/api/users/find/${username}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const user = await fetchedUser.json();
+
+  return user;
+};

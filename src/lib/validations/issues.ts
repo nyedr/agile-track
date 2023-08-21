@@ -32,15 +32,8 @@ export const issueSchema = z.object({
     IssueType.STORY,
   ]),
   projectId: z.string().uuid({ message: "Invalid project" }),
-  userId: z.string().uuid({ message: "Invalid user" }),
   assigneeId: z.string().uuid({ message: "Invalid assignee" }),
   reporterId: z.string().uuid({ message: "Invalid reporter" }),
-  comments: z.array(
-    z.object({
-      content: z.string().nonempty({ message: "Comment content is required" }),
-      userId: z.string().uuid({ message: "Invalid user" }),
-    })
-  ),
 });
 
 export type IssueInput = z.infer<typeof issueSchema>;

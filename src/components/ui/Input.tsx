@@ -6,12 +6,12 @@ import { InputHTMLAttributes, forwardRef, useState } from "react";
 import Icons from "@/components/Icons";
 
 export const inputVariants = cva(
-  "block text-slate-900 placeholder-slate-400 invalid:border-pink-500 invalid:text-pink-600 focus:outline-none focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:bg-slate-50 disabled:border-slate-200 disabled:text-slate-500 disabled:shadow-none sm:leading-6",
+  "block text-primary-text placeholder-slate-400 invalid:border-pink-500 invalid:text-pink-600 focus:outline-none focus:invalid:border-pink-500 focus:invalid:ring-pink-500 disabled:bg-slate-50 disabled:border-slate-200 disabled:text-slate-500 disabled:shadow-none sm:leading-6",
   {
     variants: {
       variant: {
         default:
-          "rounded-md border-gray-200 bg-white px-4 py-2 shadow-sm outline-none duration-300 focus:ring-2 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 border text-sm ring-inset ring-slate-300 focus:border-blue-500 focus:ring-blue-500",
+          "rounded-md border-gray-200 bg-secondary-background px-4 py-2 shadow-sm outline-none duration-300 focus:ring-2 dark:border-gray-700 border text-sm ring-inset ring-slate-300 focus:border-primary-color focus:ring-primary-color",
         ghost: "border-none focus:bg-slate-200 dark:focus:bg-gray-700",
       },
       inputSize: {
@@ -56,13 +56,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         {labelText && (
           <label
             htmlFor={props.id}
-            className="block text-sm font-medium text-gray-700 dark:text-gray-200"
+            className="block text-sm font-medium text-primary-text"
           >
             {labelText}
           </label>
         )}
 
-        <div className="relative mt-2 w-full">
+        <div className="relative w-full mt-2">
           <input
             ref={ref}
             className={cn(
@@ -81,7 +81,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             }
           />
           {isPrivateable && (
-            <span className="absolute inset-y-0 end-0 grid w-10 place-content-center">
+            <span className="absolute inset-y-0 grid w-10 end-0 place-content-center">
               <button
                 type="button"
                 className="text-gray-600 hover:text-gray-700"
@@ -90,12 +90,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                 {isPrivate ? (
                   <Icons.EyeVisible
                     onClick={() => setIsPrivate((prev) => !prev)}
-                    className="h-5 w-5"
+                    className="w-5 h-5"
                   />
                 ) : (
                   <Icons.EyeInvisible
                     onClick={() => setIsPrivate((prev) => !prev)}
-                    className="h-5 w-5"
+                    className="w-5 h-5"
                   />
                 )}
               </button>
@@ -103,7 +103,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           )}
         </div>
 
-        {error && <p className="text-red-500 mt-1 text-sm">{error.message}</p>}
+        {error && <p className="mt-1 text-sm text-red-500">{error.message}</p>}
       </div>
     );
   }

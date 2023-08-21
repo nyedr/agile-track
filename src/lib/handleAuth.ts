@@ -3,7 +3,7 @@ import { z } from "zod";
 import bcrypt from "bcryptjs";
 import { catchErrors } from "@/lib/utils";
 
-const handleAuth = async (
+const handleUserCrendentialsAuthentication = async (
   credentials: Record<"email" | "password", string> | undefined
 ) => {
   if (!credentials?.password || !credentials?.email) {
@@ -51,4 +51,4 @@ const handleAuth = async (
   return user;
 };
 
-export default handleAuth;
+export default handleUserCrendentialsAuthentication;
